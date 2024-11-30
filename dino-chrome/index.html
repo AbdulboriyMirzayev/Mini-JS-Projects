@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="stylesheet" href="style.css">
+    <title>Dinosaur Chrome</title>
+</head>
+<body>
+    <div class="container">
+        <div class="road"><img src="./road.png" alt="" width="100%"></div>
+        <div class="dino"><img src="./dino-removebg-preview.png" alt="" width="100%" height="100%"></div>
+        <div class="cactus"><img src="./cactus.png" alt="" width="100%" height="100%" ></div>
+    </div>
+    <script>
+
+        var dino = document.querySelector(".dino")
+        var cactus = document.querySelector(".cactus")
+
+        window.addEventListener("keyup", () => {
+
+            dino.classList.add("dino2")
+
+            setTimeout(() => {
+                dino.classList.remove("dino2")
+            }, 500);
+
+        })
+
+        var checkdead = setInterval(() => {
+            var dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue('top'))
+
+            var cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'))
+
+            if (cactusLeft < 10 && cactusLeft > 0 && dinoTop >= 320) {
+                cactus.style.animation = "none" 
+                alert('dead')
+            }
+        });
+
+    </script>
+</body>
+</html>
