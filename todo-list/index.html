@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(45deg, violet, pink);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .header{
+        margin-top: 20px;
+    }
+    h1{
+        color: white;
+    }
+    .center{
+        display: flex;
+        flex-direction: row;
+        margin-top: 40px;
+    }
+    input{
+        width: 200px;
+        height: 40px;
+        text-align: start;
+    }
+    button{
+        width: 100px;
+        height: 40px;
+        text-align: center;
+    }
+    .cen2{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .first{
+        width: 900px;
+        height: 40px;
+        text-align: start;
+        display: flex;
+        margin: 10px;
+        align-items: center;
+        background-color: white;
+        transition: 0.7s linear;
+    }
+    .but1{
+        width: 15px;
+        height: 15px;
+        background-color: green;
+        border: none;
+        margin: 5px;
+        position: absolute;
+        left: 75%;
+    }
+    .but2{
+        width: 15px;
+        height: 15px;
+        background-color: red;
+        border: none;
+        margin: 5px;
+        position: absolute;
+        left: 77%;  
+    }
+</style>
+<body>
+    <div class="header">
+        <h1>WORKS TO BE DONE</h1>
+    </div>
+    <div class="center">
+        <input type="text" name="" id="inp" placeholder="Enter The Work">
+        <button class="but">ADD</button>
+    </div>
+    <div class="cen2"></div>
+    </div>
+
+
+
+    <script>
+        var inp = document.querySelector("#inp")
+        var but = document.querySelector(".but")
+        var cen2 = document.querySelector(".cen2")
+
+        let addFunction = () =>{
+            var div = document.createElement("div")
+            cen2.appendChild(div)
+            div.classList.add("first")
+
+            if (inp.value == "") {
+                return null
+            }
+
+            div.innerHTML = inp.value
+
+            inp.value = "";
+
+            var but1 = document.createElement("button")
+            div.appendChild(but1)
+            but1.classList.toggle("but1")
+            var but2 = document.createElement("button")
+            div.appendChild(but2)
+            but2.classList.add("but2")
+
+            but1.addEventListener("click", () => {
+
+            div.style.scale = "0.9"
+            div.style.opacity= "0.8"
+            div.style.textDecoration= "line-through"
+            but1.style.marginLeft="170px"
+            but2.style.marginLeft="180px"
+
+
+            })
+            but2.addEventListener("click", (event)=> {
+                div.style.transform="rotate(50deg) scale(0.5)"
+                div.style.transition="0.7s linear"
+                div.style.opacity = "0.1"
+
+
+                but2.parentElement.addEventListener("transitionend", () => {
+
+                but2.parentElement.remove()
+
+            })
+            })
+        }
+
+        inp.addEventListener("keypress",  (e) => {
+            if (e.keyCode == 13) {
+                e.preventDefault()
+                addFunction()
+            }
+        })
+
+        but.addEventListener("click", addFunction)
+    </script>
+</body>
+</html>
